@@ -20,16 +20,57 @@ function getCellElements(currentRowElement) {
 }
 
 // YOUR CODE GOES HERE
-replaceAllButton.addEventListener("click", function (event) {
-  console.log("clicked!");
-  find = findInput.Value;
-  replace = replaceInput.Value;
+let replaced = [];
+// YOUR CODE GOES HERE
+replaceAllButton.addEventListener("click", function () {
+  console.log("click");
+
+  let find = findInput.value.toString();
+  let replace = replaceInput.value.toString();
+
   for (let i = 0; i < rowElements.length; i++) {
-    const newElement = getCellElements(rowElements[i]);
-    for (let j = 0; j < newElement.length; j++) {
-      const final = newElement[j];
-      if (find.includes(final)) {
-        console.log(find.includes(final));
+    const cellElements = getCellElements(rowElements[i]);
+    for (let j = 0; j < cellElements.length; j++) {
+      // console.count(j);
+      const chosen = cellElements[j];
+      // let chosensp = chosen.split("").toLowerCase;
+      //   console.log(chosen);
+      if (chosen.innerHTML.toLowerCase().includes(find)) {
+        strrpl = find.replace(find, replace);
+        console.log(strrpl);
+        chosen.innerHTML = strrpl;
+        replaced.push(strrpl);
+        console.count(strrpl);
+        console.log(replaced);
+
+        replaceAllButton.innerHTML = replaced.length;
+      }
+    }
+  }
+});
+
+replaceOne.addEventListener("click", function () {
+  let find = findInput.value.toString();
+  let replace = replaceInput.value.toString();
+  for (let i = 0; i < rowElements.length; i++) {
+    const cellElements = getCellElements(rowElements[i]);
+    for (let j = 0; j < cellElements.length; j++) {
+      // console.count(j);
+      const chosen = cellElements[j];
+      // let chosensp = chosen.split("").toLowerCase;
+      //   console.log(chosen);
+
+      if (chosen.innerHTML.toLowerCase().includes(find)) {
+        strrpl = find.replace(find, replace);
+        console.log(strrpl);
+
+        replaced.push(strrpl);
+        console.count(strrpl);
+        console.log(replaced);
+        chosen.innerHTML = strrpl;
+      }
+      if (chosen === 2) {
+        break;
       }
     }
   }
