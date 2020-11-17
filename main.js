@@ -4,7 +4,7 @@
 const findInput = document.querySelector(".find-input");
 const replaceInput = document.querySelector(".replace-input");
 const replaceAllButton = document.querySelector(".replace-all-button");
-
+const replaceOne = document.querySelector(".replace-One");
 // The following variable holds your OUTER ARRAY of row elements.
 // Later you will need an OUTER LOOP to loop over the individual elements within
 // this array.
@@ -19,14 +19,13 @@ function getCellElements(currentRowElement) {
   return currentRowElement.querySelectorAll(".cell");
 }
 
-// YOUR CODE GOES HERE
 let replaced = [];
 // YOUR CODE GOES HERE
 replaceAllButton.addEventListener("click", function () {
   console.log("click");
 
-  let find = findInput.value.toString();
-  let replace = replaceInput.value.toString();
+  let find = findInput.value.toString().toLowerCase();
+  let replace = replaceInput.value.toString().toLowerCase();
 
   for (let i = 0; i < rowElements.length; i++) {
     const cellElements = getCellElements(rowElements[i]);
@@ -50,8 +49,8 @@ replaceAllButton.addEventListener("click", function () {
 });
 
 replaceOne.addEventListener("click", function () {
-  let find = findInput.value.toString();
-  let replace = replaceInput.value.toString();
+  let find = findInput.value.toString().toLowerCase();
+  let replace = replaceInput.value.toString().toLowerCase();
   for (let i = 0; i < rowElements.length; i++) {
     const cellElements = getCellElements(rowElements[i]);
     for (let j = 0; j < cellElements.length; j++) {
@@ -69,7 +68,7 @@ replaceOne.addEventListener("click", function () {
         console.log(replaced);
         chosen.innerHTML = strrpl;
       }
-      if (chosen === 2) {
+      if (replaced.length >= 1) {
         break;
       }
     }
@@ -88,4 +87,4 @@ replaceOne.addEventListener("click", function () {
 // time-cost of ignoring the quality and readability of your code.
 //
 // You can, of course, remove any comments in this starter project once
-// you have read them, if you prefer.
+// you have read them, if you prefer
