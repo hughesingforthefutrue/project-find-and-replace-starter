@@ -24,22 +24,23 @@ let replaced = [];
 replaceAllButton.addEventListener("click", function () {
   console.log("click");
 
-  let find = findInput.value.toString().toLowerCase();
-  let replace = replaceInput.value.toString().toLowerCase();
+  let find = findInput.value;
+  let replace = replaceInput.value;
 
   for (let i = 0; i < rowElements.length; i++) {
     const cellElements = getCellElements(rowElements[i]);
     for (let j = 0; j < cellElements.length; j++) {
       // console.count(j);
-      const chosen = cellElements[j];
+      // const chosen = cellElements[j];
       // let chosensp = chosen.split("").toLowerCase;
       //   console.log(chosen);
-      if (chosen.innerHTML.toLowerCase().includes(find)) {
-        strrpl = find.replace(find, replace);
-        console.log(strrpl);
-        chosen.innerHTML = strrpl;
-        replaced.push(strrpl);
-        console.count(strrpl);
+      if (cellElements[j].innerHTML.includes(find)) {
+        cellElements[j].innerHTML = cellElements[j].innerHTML.replace(
+          find,
+          replace
+        );
+
+        replaced.push(cellElements[j].innerHTML.replace(find, replace));
         console.log(replaced);
 
         replaceAllButton.innerHTML = replaced.length;
@@ -56,17 +57,18 @@ replaceOne.addEventListener("click", function () {
     for (let j = 0; j < cellElements.length; j++) {
       // console.count(j);
       const chosen = cellElements[j];
-      // let chosensp = chosen.split("").toLowerCase;
+      let chosensp = chosen.split("");
       //   console.log(chosen);
 
-      if (chosen.innerHTML.toLowerCase().includes(find)) {
+      if (chosensp.innerHTML.toLowerCase().includes(find)) {
+        // split = chosen.innerHTML.toString().split("");
         strrpl = find.replace(find, replace);
         console.log(strrpl);
 
         replaced.push(strrpl);
         console.count(strrpl);
         console.log(replaced);
-        chosen.innerHTML = strrpl;
+        chosensp.innerHTML = strrpl;
       }
       if (replaced.length >= 1) {
         break;
